@@ -15,7 +15,30 @@ begin=r"\T"
 en=r"_params.csv"
 
 x=1
-for x in range(1,19) and range(21,22):
+for x in range(1,19):   #the file names in order there is no 20 so skipping 20 required a second loop latter
+    path = dpath + begin + str(x) + en
+    df = pd.read_csv(path)
+    df.head()
+    
+    a=df['Time (s)']    #slicing the needed data
+    b=df['Alt. [km]']   #slicing the needed data
+    R=df['Int. Freq.(rad/s)']   #slicing the needed data
+    plt.plot(a,R)
+    plt.xlabel ('a (time)')
+    plt.ylabel('R (intrinsic)')
+    y=str(x)    #taking flight number and making it a string
+   
+    plt.title('flight ' +y)
+    plt.show()
+    
+    plt.plot(b,R)
+    plt.xlabel ('b (height)')
+    plt.ylabel('R (intrinsic)')
+    plt.title('flight '+ y)
+    plt.show()
+
+
+for x in range(21,51):
     path = dpath + begin + str(x) + en
     df = pd.read_csv(path)
     df.head()
@@ -26,16 +49,15 @@ for x in range(1,19) and range(21,22):
     plt.plot(a,R)
     plt.xlabel ('a (time)')
     plt.ylabel('R (intrinsic)')
-    y=str(path)
-    last_char=y[-12]
-    plt.title(last_char)
+    y=str(x)
+   
+    plt.title('flight '+ y)
     plt.show()
     
     plt.plot(b,R)
     plt.xlabel ('b (height)')
     plt.ylabel('R (intrinsic)')
-    plt.title(path)
+    plt.title('flight '+ y)
     plt.show()
-    x=x+1
-
-
+    https://github.com/konst789/gravity-waves.git
+    
